@@ -1,6 +1,6 @@
 # CRUD TypeScript Project
 
-Este proyecto es una aplicación CRUD (Crear, Leer, Actualizar, Eliminar) construida con Next.js 14, TypeScript, SQLite y Prisma como ORM.
+Este proyecto es una aplicación CRUD (Crear, Leer, Actualizar, Eliminar) construida con Next.js 14 y TypeScript, SQLite y Prisma como ORM.
 
 ## Tecnologías Utilizadas
 
@@ -10,17 +10,12 @@ Este proyecto es una aplicación CRUD (Crear, Leer, Actualizar, Eliminar) constr
 - Prisma
 - SQLite
 
-## Instalación
+## Instalación y Configuración de la Base de Datos
 
-- Clona el repositorio
-- Instala las dependencias
-
-## Configuración de la Base de Datos
-
-1. Inicializa Prisma:
+1. Intala las dependencias
 
 ```bash
-npx prisma init
+npm install
 ```
 
 2. Genera las migraciones y la base de datos:
@@ -38,7 +33,7 @@ npx prisma generate
 4. Ejecuta los seeds para poblar la base de datos:
 
 ```bash
-npx prisma db seed
+npm run db:seed
 ```
 
 ## Ejecución del Proyecto
