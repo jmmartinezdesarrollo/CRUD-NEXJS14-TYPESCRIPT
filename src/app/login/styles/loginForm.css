@@ -1,0 +1,22 @@
+.login-form{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+.login-form > div{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 350px;
+  
+}
+.login-form > div > h1{
+   text-align: center;
+}
+
+.login-form > div > button{
+    width: 100%;
+}

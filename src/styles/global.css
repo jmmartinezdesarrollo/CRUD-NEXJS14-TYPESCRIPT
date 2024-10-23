@@ -1,0 +1,17 @@
+@import url('https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css');
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+nav > div{
+    display:flex;
+     align-items: center;
+     gap:10px;
+
+}
+
+input,select{
+    width: 100%;
+    box-sizing: border-box;
+}
