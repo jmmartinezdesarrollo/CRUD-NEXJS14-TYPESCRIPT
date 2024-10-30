@@ -46,7 +46,7 @@ const Layout = ({ children }: LayoutProps) => {
     if (pathname !== "/login") {
       fetchUser();
     }
-  }, []);
+  }, [pathname]);
 
   const navbar = useMemo(() => {
     return pathname !== "/login" ? <Navbar user={user} /> : null;
