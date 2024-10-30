@@ -28,22 +28,24 @@ const Layout = ({ children }: LayoutProps) => {
   const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch("/api/user/me");
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data);
-        } else {
-          console.error("Failed to fetch user");
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
+  const fetchUser = async () => {
+    try {
+      const response = await fetch("/api/me");
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+      } else {
+        console.error("Failed to fetch user");
       }
-    };
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    }
+  };
 
-    fetchUser();
+  useEffect(() => {
+    if (pathname !== "/login") {
+      fetchUser();
+    }
   }, []);
 
   const navbar = useMemo(() => {

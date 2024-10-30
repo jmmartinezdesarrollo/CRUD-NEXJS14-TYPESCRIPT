@@ -15,7 +15,12 @@ export function middleware(request: NextRequest) {
   const homeUrl = new URL("/", request.url);
   const error401Url = new URL("/401", request.url);
 
-  const publicRoutes = ["/login", "/401"];
+  const publicRoutes = [
+    "/login",
+    "/401",
+    "/api/auth/login",
+    "/api/auth/logout",
+  ];
   const adminRoutes = ["/settings", "/api/roles", "/api/user"];
 
   const token = request.cookies.get("token")?.value;
@@ -32,23 +37,21 @@ export function middleware(request: NextRequest) {
     const decoded = decodeToken(token) as DecodedToken;
 
     const currentTime = Math.floor(Date.now() / 1000);
+
     if (decoded.exp < currentTime) {
       return redirectToLoginWithClearedCookie(request);
     }
 
-    if (
-      adminRoutes.some((route) => pathname.startsWith(route)) &&
-      !decoded.isAdmin
-    ) {
+    if (adminRoutes.includes(pathname) && !decoded.isAdmin) {
       return NextResponse.redirect(error401Url);
     }
 
     return NextResponse.next();
   } catch (error) {
-    return NextResponse.redirect(error401Url);
+    console.error("Error decoding token:", error);
+    return redirectToLoginWithClearedCookie(request);
   }
 }
-
 export const config = {
   matcher: ["/((?!_next/static|favicon.ico).*)"],
 };

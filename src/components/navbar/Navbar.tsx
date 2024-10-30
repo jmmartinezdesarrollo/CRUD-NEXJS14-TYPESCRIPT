@@ -1,11 +1,6 @@
 "use client";
 import Link from "next/link";
-
-interface NavbarProps {
-  user: {
-    isAdmin: boolean;
-  } | null;
-}
+import NavbarProps from "./types";
 
 export default function Navbar({ user }: NavbarProps) {
   const handleLogout = async () => {

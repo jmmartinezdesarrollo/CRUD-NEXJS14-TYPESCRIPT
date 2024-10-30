@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { hashPassword } from "@/lib/auth"; 
+import { hashPassword } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
@@ -40,7 +40,10 @@ export async function PATCH(req: Request) {
     });
 
     if (existingRoles.length !== roles.length) {
-      return NextResponse.json({ error: "One or more roles do not exist" }, { status: 400 });
+      return NextResponse.json(
+        { error: "One or more roles do not exist" },
+        { status: 400 }
+      );
     }
 
     await prisma.userRole.deleteMany({
@@ -55,7 +58,6 @@ export async function PATCH(req: Request) {
         roleId,
       })),
     });
-
 
     const finalUser = await prisma.user.findUnique({
       where: {
@@ -78,7 +80,6 @@ export async function PATCH(req: Request) {
       })),
     };
 
-    console.log(transformedUser);
     return NextResponse.json(transformedUser);
   } catch (error) {
     console.error("Error updating user:", error);
